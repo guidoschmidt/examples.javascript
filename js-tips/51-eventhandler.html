@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>#51</title>
+  </head>
+  <body>
+    <button id="A" type="button" name="button">A</button>
+  </body>
+</html>
+
+<script type="text/javascript">
+  var buttonA = document.querySelector('#A')
+
+  //-- Binding event handlers like so:
+  /*
+  buttonA.addEventListener('click', obj.method.bind(obj))
+  buttonA.addEventListener('click', function (event) {})
+  buttonA.addEventListener('click', (event) => {})
+  */
+  // may cause performance issues, because the binding functions
+  // are anonymous
+
+
+  //-- Safer event handling:
+  // Handling function
+  var handler = function (cb) {
+    console.log("Tada!")
+    // Later remove the event handling function
+    buttonA.removeEventListener('click', handler)
+  }
+  buttonA.addEventListener('click', handler)
+
+  // Named function that removes itself
+  buttonA.addEventListener('click', function click(e) {
+    console.log('Bimbum!')
+    if (true) {
+      return e.currentTarget.removeEventListener('click', click);
+    }
+  });
+
+
+  //-- Even better approach
+  function handleEvent (eventName, onElement, withCallback, useCapture, args) {
+    var element = onElement || document.documentElement
+
+    function handler (event) {
+      if (typeof withCallback === 'function') {
+        withCallback.call(args, event)
+      }
+    }
+
+    handler.destroy = function () {
+      return element.removeEventListener(eventName, handler, useCapture)
+    }
+
+    onElement.addEventListener(eventName, handler, useCapture)
+    return handler
+  }
+
+  var handleClick = handleEvent('click', buttonA, function(event) {
+      console.log('Tüdedlü!')
+      handleClick.destroy()
+    }, false)
+
+
+</script>
