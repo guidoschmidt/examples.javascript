@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>#46 - Document Ready</title>
+    <style media="screen">
+      @keyframes fadeIn {
+          0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      body {
+        background: rgb(251, 251, 251);
+        font-family: sans-serif;
+        color: rgb(2, 190, 122);
+        padding: 2rem;
+        opacity: 0;
+        animation: fadeIn 0.5s 1;
+        animation-delay: 0.15s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script type="text/javascript">
+    var stateCheck = setInterval(function() {
+      if (document.readyState === 'complete') {
+        console.log(document.readyState)
+        var root = document.querySelector('#root')
+        var _h1 = document.createElement('H1')
+        _h1.innerText = 'Page is fully loaded'
+        root.appendChild(_h1)
+        clearInterval(stateCheck)
+      }
+    }, 50)
+
+    // Alternatively use onreadystatechange event
+    document.onreadystatechange = function() {
+      if (document.readyState === 'complete') {
+        alert('Document is ready')
+      }
+    }
+  </script>
+</html>
