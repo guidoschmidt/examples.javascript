@@ -1,0 +1,12 @@
+[
+  {
+    "name" : "Luigi",
+    "age"  : 23,
+    "nationality"  : "Italian"
+  },
+  {
+    "name" : "Mario",
+    "age"  : 12,
+    "nationality"  : "Italian"
+  }
+]

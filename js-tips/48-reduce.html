@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>#48 - Reduce</title>
+    <style media="screen">
+      body {
+        background: rgb(228, 215, 224);
+        font-family: sans-serif;
+        color: rgb(196, 10, 55);
+        padding: 2rem;
+      }
+
+      h1 {
+        color: rgb(238, 1, 59);
+        padding-bottom: 1rem;
+        border-bottom: 5px solid rgba(240, 143, 186, 0.5);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li span {
+        width: 10rem;
+        display: inline-block;
+      }
+
+      ul li b {
+        color: rgb(221, 0, 60);
+        text-align: right;
+        display: inline-block;
+        width: 10rem;
+      }
+
+      .total {
+        text-align: right;
+        border-top: 2px dashed rgb(152, 14, 102);
+        padding-top: 1rem;
+        width: 20rem;
+        font-size: 22px;
+      }
+
+      @keyframes highlight {
+        from { color: rgb(0, 250, 173); }
+        to { color: rgb(196, 10, 55); }
+      }
+
+      .animate {
+        animation-name: highlight;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Shopping Cart</h1>
+    <div id="checkout">
+      <ul id="list"></ul>
+    </div>
+    <button type="button" class="voucher" name="button">
+      I have a voucher of 20€!
+    </button>
+  </body>
+  <script type="text/javascript">
+    var items = [
+      {name: 'MaxBook Pro', prize: 2242.90},
+      {name: 'Nekzus 5X', prize: 342.50},
+      {name: 'USB Adapter', prize: 3.25},
+      {name: 'Eiso Flexscan Z12', prize: 2400.00}
+    ]
+
+    // Create itemlist
+    var list = document.querySelector('#list')
+    items.forEach(function(item, index) {
+      var _li = document.createElement('LI')
+      var _name = document.createElement('SPAN')
+      _name.innerText = item.name
+      _li.appendChild(_name)
+      var _b = document.createElement('B')
+      _b.innerText = item.prize + ' €'
+      _li.appendChild(_b)
+      list.appendChild(_li)
+    })
+
+    function calculateTotal(startprize) {
+      return items.reduce(function(sum, item) {
+        return sum + item.prize
+      }, startprize)
+    }
+
+    var _h4 = document.createElement('H4')
+    _h4.innerText = 'Total: ' + calculateTotal(0) + ' €'
+    _h4.className = 'total'
+    document.querySelector('#checkout').appendChild(_h4)
+
+    var voucherButton = document.querySelector('.voucher')
+    voucherButton.addEventListener('click', function discount() {
+      console.log('Recalculate prize')
+      _h4.innerText = 'Total: ' + calculateTotal(-20) + ' €'
+      _h4.className = 'total animate'
+      voucherButton.removeEventListener('click', discount)
+    })
+  </script>
+</html>
