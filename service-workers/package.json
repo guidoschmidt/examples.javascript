@@ -1,0 +1,8 @@
+{
+  "name": "promises-example",
+  "scripts": {
+    "start": "http-server -p 4000 -o"
+  },
+  "author": "Guido Schmidt <guido.schmidt.2912@gmail.com>",
+  "license": "MIT"
+}
