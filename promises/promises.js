@@ -2,7 +2,7 @@ console.log('Javascript Promises');
 
 var container = $('#container');
 
-var promise = $.get('http://localhost:8080/test.json');
+const promise = $.get('http://localhost:8080/test.json');
 
 promise
 .success(function(data) {
