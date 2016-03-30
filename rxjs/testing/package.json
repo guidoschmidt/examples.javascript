@@ -1,0 +1,13 @@
+{
+  "name": "testing-rxjs",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "check-more-types": "^2.13.0",
+    "lazy-ass": "^1.4.0",
+    "lodash": "^4.6.1",
+    "mocha": "^2.4.5",
+    "rx": "~4.1.0"
+  }
+}
