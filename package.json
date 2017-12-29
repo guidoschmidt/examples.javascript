@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Hodgepodge of Javascript examples",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "ecstatic": "^2.0.0",
+    "lodash": "^4.17.4"
+  },
   "devDependencies": {
     "babel-core": "^6.7.4",
     "babel-polyfill": "^6.23.0",
