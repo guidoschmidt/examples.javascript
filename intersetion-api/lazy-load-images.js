@@ -2,7 +2,7 @@
 
 const options = {
   root: null,
-  rootMargin: "0px 0px",
+  rootMargin: "100px 0px",
   threshold: 0
 }
 
