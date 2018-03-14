@@ -1,0 +1,50 @@
+:root {
+    --main: #F2F3F4;
+    --headlines: #6503FD;
+    --text: #232323;
+    --columns: 1fr 1fr;
+}
+
+html {
+    background: var(--main);
+    color: var(--text);
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10vw;
+    line-height: 1.8;
+    transition: background 4s ease, color 4s ease;
+}
+
+h1, h2 {
+    color: var(--headlines);
+    transition: color 4s ease;
+}
+
+button {
+    background: var(--headlines);
+    color: var(--main);
+    border: 0;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0px 5px 20px var(--headlines);
+    transition: background 350ms ease, box-shadow 350ms ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--headlines);
+    box-shadow: 0px 10px 40px var(--headlines);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: var(--columns);
+    grid-gap: 100px;
+    margin: 50px 0;
+}
+
+@media all and (max-width: 650px) {
+    :root {
+        --columns: 1fr;
+    }
+}
